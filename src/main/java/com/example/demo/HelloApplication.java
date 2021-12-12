@@ -12,8 +12,8 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 400 , 600);
-        stage.setTitle("MobilePay Start Page");
+        Scene scene = new Scene(fxmlLoader.load(), 700 , 600);
+        stage.setTitle("MarcPay");
         stage.setScene(scene);
         stage.setResizable(false);
 
@@ -21,7 +21,7 @@ public class HelloApplication extends Application {
 
 
         stage.show();
-        scene.lookup("HBox").requestFocus();
+        scene.lookup("BorderPane").requestFocus();
     }
 
     public static void main(String[] args) {
