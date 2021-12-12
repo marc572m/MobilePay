@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.HelloController">
    <children>
@@ -38,12 +39,12 @@
                   </AnchorPane>
                   <AnchorPane fx:id="LoginPanel" layoutX="8.0" layoutY="228.0" prefHeight="385.0" prefWidth="387.0">
                      <children>
-                        <TextField layoutX="94.0" layoutY="42.0" prefHeight="40.0" prefWidth="200.0" promptText="Tel. number">
+                        <TextField fx:id="phoneNumber" layoutX="94.0" layoutY="42.0" prefHeight="40.0" prefWidth="200.0" promptText="Tel. number">
                            <font>
                               <Font name="Arial" size="20.0" />
                            </font>
                         </TextField>
-                        <PasswordField layoutX="95.0" layoutY="88.0" prefHeight="40.0" prefWidth="200.0" promptText="Password">
+                        <PasswordField fx:id="passwordField" layoutX="95.0" layoutY="88.0" prefHeight="40.0" prefWidth="200.0" promptText="Password">
                            <font>
                               <Font name="Arial" size="20.0" />
                            </font>
@@ -54,22 +55,27 @@
                            </font>
                         </Button>
                         <Hyperlink fx:id="SignupLink" layoutX="111.0" layoutY="308.0" onAction="#RegisterLinkPressed" text="Dont have an account? Sign up!" textFill="#0084ff" />
-                        <PasswordField fx:id="ConfirmPasswordTextField" layoutX="95.0" layoutY="134.0" prefHeight="40.0" prefWidth="200.0" promptText="Confirm password" visible="false">
+                        <TextField fx:id="username" layoutX="95.0" layoutY="134.0" prefHeight="40.0" prefWidth="200.0" promptText="Username" visible="false">
                            <font>
                               <Font name="Arial" size="20.0" />
                            </font>
-                        </PasswordField>
-                        <PasswordField fx:id="BalanceTextField" layoutX="95.0" layoutY="182.0" prefHeight="40.0" prefWidth="200.0" promptText="Balance" visible="false">
+                        </TextField>
+                        <TextField fx:id="BalanceTextField" layoutX="94.0" layoutY="180.0" prefHeight="40.0" prefWidth="200.0" promptText="Balamce" visible="false">
                            <font>
-                              <Font name="Arial" size="20.0" />
+                              <Font size="20.0" />
                            </font>
-                        </PasswordField>
+                        </TextField>
                         <Button fx:id="RegisterButton" layoutX="81.0" layoutY="242.0" mnemonicParsing="false" onAction="#RegisterPressed" prefHeight="60.0" prefWidth="225.0" text="Register" visible="false">
                            <font>
                               <Font size="26.0" />
                            </font>
                         </Button>
                         <Hyperlink fx:id="LoginLink" layoutX="97.0" layoutY="308.0" onAction="#LoginLinkPressed" text="Already have an account? Login here!" textFill="#0084ff" visible="false" />
+                        <Text fx:id="errText" fill="RED" layoutX="99.0" layoutY="10.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" underline="true" wrappingWidth="188.13671875">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Text>
                      </children>
                   </AnchorPane>
                </children>
