@@ -33,14 +33,14 @@ public class HelloController {
     @FXML private void LoginPressed() {
 
         if (Objects.equals(phoneNumber.getText(), "")) {
-            errText.setText("Empty phone number");
+            errText.setText("Not a valid phone number.");
         }
 
         DbSqlite sql = new DbSqlite();
         try {
             switch (sql.login(Integer.parseInt(phoneNumber.getText()), passwordField.getText())) {
-                case "ErrPhoneNum" -> errText.setText("This is not a registered phone number");
-                case "ErrWrongPassword" -> errText.setText("Not the correct password");
+                case "ErrPhoneNum" -> errText.setText("This phone number has not been registered yet.");
+                case "ErrWrongPassword" -> errText.setText("Incorrect password.");
                 case "Login" -> {
                     errText.setText("");
 
@@ -83,7 +83,7 @@ public class HelloController {
 
         } catch (NumberFormatException e ) {
             // Make it clear only whole number in balance for now, maybe add a system for 2 decimal comma later
-            System.out.println("Only Integers for balance right now");
+            System.out.println("Balance should only be integers.");
         }
 
     }
