@@ -37,26 +37,22 @@ public class HelloController {
         }
 
         DbSqlite sql = new DbSqlite();
-
         try {
             switch (sql.login(Integer.parseInt(phoneNumber.getText()), passwordField.getText())) {
                 case "ErrPhoneNum" -> errText.setText("This is not a registered phone number");
                 case "ErrWrongPassword" -> errText.setText("Not the correct password");
                 case "Login" -> {
                     errText.setText("");
-                    // do the login
+
+                    HelloApplication.ActiveUserNumber = Integer.parseInt( phoneNumber.getText() );
+
                     loginSwitchScene();
                 }
-
-
-                case "empty" -> errText.setText("Empty phone number");
+                case "empty" -> errText.setText("Not a valid phone number");
             }
-
-
         }catch (NumberFormatException e) {
             // makes not a valid phone number input
         }
-
     }
 
     @FXML private void RegisterPressed() {
@@ -71,10 +67,13 @@ public class HelloController {
 
             DbSqlite sql = new DbSqlite();
 
-           // System.out.println( sql.checkUser(user) );
+
 
             if (sql.checkUser(user.getPhoneNumber())) {
-                sql.addUser(user);
+
+                DbSqlite dbSqlite = new DbSqlite();
+
+                dbSqlite.addUser(user);
                 } else {
                 System.out.println("It is already created");
             }
