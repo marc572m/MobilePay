@@ -74,6 +74,8 @@ public class DbSqlite {
             connection.close();
             statement.close();
 
+            System.out.println("Your account has been created, now you can log in");
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -94,8 +96,7 @@ public class DbSqlite {
             return "ErrPhoneNum";
         }
 
-        String sql = "SELECT * FROM Users WHERE phoneNumber = " + phoneNumber;
-        Statement statement = null;
+       String sql = "SELECT * FROM Users WHERE phoneNumber = " + phoneNumber;
         try {
             Statement statement = connection.createStatement();
 
@@ -126,6 +127,93 @@ public class DbSqlite {
 
         return "Err";
     }
+
+    public int returnBalance (int phoneNumber) {
+
+
+        String sql = "SELECT * FROM Users WHERE phoneNumber = " + phoneNumber;
+
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+
+            int balance = resultSet.getInt(4);
+
+            connection.close();
+
+
+            return balance;
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return 0;
+    }
+
+    public void sendMoney(int senderNumber, int receiverNumber, int amount) {
+
+        DbSqlite dbSqlite = new DbSqlite();
+        int senderBalance = dbSqlite.returnBalance(senderNumber);
+        dbSqlite = new DbSqlite();
+        int reviverBalance = dbSqlite.returnBalance(receiverNumber);
+
+
+        String sqlSender = "UPDATE Users SET balance = " + (senderBalance - amount) + " WHERE phoneNumber = " + senderNumber;
+        String sqlReceiver = "UPDATE Users SET balance = " + (reviverBalance + amount) + " WHERE phoneNumber = " + receiverNumber;
+
+        try {
+            Statement statement = connection.createStatement();
+
+            statement.execute(sqlSender);
+            statement.execute(sqlReceiver);
+
+            System.out.println("balances have been updated");
+
+            statement.close();
+            connection.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public User getUser(int phoneNumber) {
+
+        String sql = "SELECT * FROM Users WHERE phoneNumber = " + phoneNumber;
+
+        try {
+            Statement statement = connection.createStatement();
+
+            ResultSet resultSet = statement.executeQuery(sql);
+
+            User user = new User(
+                    resultSet.getInt(1),
+                    resultSet.getString(2),
+                    resultSet.getString(3),
+                    resultSet.getInt(4));
+
+            connection.close();
+            statement.close();
+
+
+                return user;
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+
+        return null;
+
+
+
+    }
+
+
 
 
 }

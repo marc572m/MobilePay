@@ -75,7 +75,7 @@ public class HelloController {
 
                 dbSqlite.addUser(user);
                 } else {
-                System.out.println("It is already created");
+                errText.setText("A user with this phone number already exists.");
             }
 
 
