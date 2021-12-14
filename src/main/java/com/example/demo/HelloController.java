@@ -59,7 +59,7 @@ public class HelloController {
 
 
 
-    @FXML private void RegisterPressed() {
+        @FXML private void RegisterPressed() {
 
         try {
 
@@ -72,7 +72,6 @@ public class HelloController {
             DbSqlite sql = new DbSqlite();
 
 
-
             if (sql.checkUser(user.getPhoneNumber())) {
 
                  sql = new DbSqlite();
@@ -82,16 +81,12 @@ public class HelloController {
                 errText.setText("A user with this phone number already exists.");
             }
 
-
-
-
         } catch (NumberFormatException e ) {
             // Make it clear only whole number in balance for now, maybe add a system for 2 decimal comma later
             System.out.println("Balance should only be integers.");
         }
 
     }
-
 
     @FXML private void RegisterLinkPressed() {
 
@@ -128,8 +123,6 @@ public class HelloController {
             e.printStackTrace();
         }
 
-
     }
-
 
 }

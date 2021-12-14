@@ -14,7 +14,7 @@ import java.io.IOException;
 public class HelloApplication extends Application {
 
 
-    public static int ActiveUserNumber;// du en ged
+    public static int ActiveUserNumber;
 
     @Override
     public void start(Stage stage) throws IOException {
