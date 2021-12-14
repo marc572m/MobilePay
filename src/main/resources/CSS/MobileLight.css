@@ -6,6 +6,65 @@
 }
 
 
+.button#Reject {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0 0 0 10 ;
+    -fx-padding: 0 0 0 0 ;
+    -fx-border-width: 3 3 0 0 ;
+    -fx-border-color: #b4b4b4;
+    -fx-end-margin: 0 0 0 0 ;
+    -fx-start-margin: 0 0 0 0 ;
+    -fx-text-fill: Red ;
+
+}
+
+.button#Reject:hover {
+    -fx-background-color: rgba(217, 217, 217, 0.85);
+    -fx-font-weight: bold;
+
+}
+.button#Reject:pressed {
+    -fx-background-color: rgba(161, 52, 52, 0.85);
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+}
+.button#Reject:focused {
+    -fx-background-color: rgba(161, 52, 52, 0.85);
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+}
+
+.button#send {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0 0 10 0 ;
+    -fx-padding: 0 0 0 0 ;
+    -fx-border-width: 3 0 0 0 ;
+    -fx-border-color: #b4b4b4;
+    -fx-end-margin: 0 0 0 0 ;
+    -fx-start-margin: 0 0 0 0 ;
+    -fx-text-fill: #27d027;
+}
+.button#send:hover {
+    -fx-background-color: rgba(217, 217, 217, 0.85);
+    -fx-font-weight: bold;
+
+}
+.button#send:pressed {
+    -fx-background-color: rgba(45, 175, 45, 0.85);
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+}
+.button#send:focused {
+    -fx-background-color: rgba(45, 175, 45, 0.85);
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+}
+
+
 
 .button
 {
@@ -30,6 +89,18 @@
 
 
 }
+
+.track {
+
+
+    -fx-border-width: 3 3 3 3  ;
+    -fx-padding: 3 3 3 3 ;
+    -fx-border-radius: 3 3 3 3  ;
+
+
+}
+
+
 
 
 .button.label:hover {

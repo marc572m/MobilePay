@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-
+<?import javafx.scene.text.TextFlow?>
 
 <AnchorPane prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.MainSceneController">
    <children>
@@ -44,6 +49,32 @@
                         </Button>
                      </children>
                   </AnchorPane>
+                  <TextFlow layoutX="248.0" layoutY="251.0" prefHeight="46.0" prefWidth="394.0" textAlignment="CENTER">
+                     <children>
+                        <TextFlow fx:id="errTextBorder" maxHeight="576.0" maxWidth="1.7976931348623157E308" prefHeight="27.0" style="-fx-border-color: #ff0000;" styleClass="track" stylesheets="@../../../CSS/MobileLight.css" textAlignment="CENTER" visible="false">
+                           <children>
+                              <Text fx:id="errText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="218.0">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </TextFlow>
+                     </children>
+                  </TextFlow>
+                  <TextFlow layoutX="283.0" layoutY="249.0" prefHeight="49.0" prefWidth="410.0" textAlignment="CENTER">
+                     <children>
+                        <TextFlow fx:id="successTextBox" maxHeight="576.0" maxWidth="1.7976931348623157E308" prefHeight="27.0" style="-fx-border-color: #00ff2c;" styleClass="track" stylesheets="@../../../CSS/MobileLight.css" textAlignment="CENTER" visible="false">
+                           <children>
+                              <Text fx:id="successSendMessage" fill="#00ff2c" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="152.13671875">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </TextFlow>
+                     </children>
+                  </TextFlow>
                   <TextField fx:id="sendAmount" layoutX="340.0" layoutY="134.0" prefHeight="35.0" prefWidth="209.0" promptText="Amount" stylesheets="@../../../CSS/MobileLight.css">
                      <font>
                         <Font size="15.0" />
@@ -70,16 +101,6 @@
                         <Font name="System Bold" size="17.0" />
                      </font>
                   </Button>
-                  <Text fx:id="errText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="152.13671875">
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font>
-                  </Text>
-                  <Text fx:id="successSendMessage" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="152.13671875">
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font>
-                  </Text>
                </children>
             </AnchorPane>
          </center>
@@ -105,6 +126,60 @@
             </AnchorPane>
          </top>
       </BorderPane>
-      <VBox layoutY="54.0" prefHeight="546.0" prefWidth="269.0" />
+      <VBox layoutY="55.0" prefHeight="544.0" prefWidth="260.0">
+         <children>
+            <ScrollPane hbarPolicy="NEVER" pannable="true" prefHeight="546.0" vbarPolicy="NEVER">
+               <content>
+                  <VBox fx:id="vbox" depthTest="ENABLE" prefHeight="6496.0" prefWidth="255.0" spacing="20.0">
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
+                     <padding>
+                        <Insets left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                     <children>
+                        <GridPane alignment="TOP_CENTER" prefHeight="119.0" prefWidth="215.0" styleClass="chart" stylesheets="@../../../CSS/Regular.css">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.0" minWidth="10.0" prefWidth="118.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="99.0" minWidth="10.0" prefWidth="91.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints maxHeight="78.0" minHeight="10.0" prefHeight="72.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="48.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Button id="Reject" mnemonicParsing="false" prefHeight="72.0" prefWidth="118.0" stylesheets="@../../../CSS/MobileLight.css" text="Decline" textFill="RED" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button id="send" mnemonicParsing="false" prefHeight="71.0" prefWidth="91.0" stylesheets="@../../../CSS/MobileLight.css" text="Send" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Button>
+                              <AnchorPane prefHeight="40.0" prefWidth="206.0">
+                                 <children>
+                                    <Text fx:id="requestText" layoutX="5.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name send you a request for" wrappingWidth="200.13671875" />
+                                    <Text layoutX="4.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$ 00.00 " textAlignment="CENTER" wrappingWidth="200.13671875">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </Text>
+                                    <Text layoutX="5.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date Here" textAlignment="CENTER" wrappingWidth="200.13671875">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#00000098" layoutX="4.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The number here" wrappingWidth="100.13671875" />
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </GridPane>
+                     </children>
+                  </VBox>
+               </content>
+            </ScrollPane>
+         </children></VBox>
    </children>
 </AnchorPane>

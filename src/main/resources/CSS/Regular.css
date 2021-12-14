@@ -8,6 +8,23 @@
 
 }
 
+.chart {
+
+    -fx-background-color: transparent;
+    -fx-border-color: #b4b4b4;
+    -fx-border-radius: 10 10 10 10;
+    -fx-border-width: 3 3 3 3  ;
+    -fx-padding: 0 0 0 0 ;
+    -fx-start-margin: 0 0 0 0;
+    -fx-end-margin: 0 0 0 0;
+
+
+
+}
+
+
+
+
 .button:hover {
     -fx-background-color: #1a6c9d;
 }
