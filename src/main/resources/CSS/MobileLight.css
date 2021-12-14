@@ -1,14 +1,71 @@
+.label {
+    -fx-background-color: #10163fff;
+}
+.filler {
+    -fx-background-color: #4b70d1ff;
+}
+
+
+
 .button
 {
-    -fx-background-color : #13517cff;
+
+
+    -fx-text-fill: #2083c6ff;
+    -fx-background-radius: 20 20 20 20;
+    -fx-background-color: transparent;
+    -fx-progress-color: #ffffffff;
+
 }
+
+.button.label {
+
+    -fx-text-fill: #ffffff ;
+    -fx-background-radius: 20 20 20 20;
+    -fx-padding: 0 0 0 0 ;
+    -fx-background-color: transparent;
+    -fx-border-color: #ffffff;
+    -fx-border-width: 3 3 3 3 ;
+    -fx-border-radius: 20 20 20 20 ;
+
+
+}
+
+
+.button.label:hover {
+
+    -fx-text-fill: #4b70d1ff ;
+    -fx-border-color: #4b70d1ff;
+    -fx-border-width: 5 5 5 5 ;
+
+}
+
+
+.text-field {
+    -fx-background-color: transparent;
+    -fx-border-color:#2083c6ff ;
+    -fx-border-width:  0 0 2 0;
+
+
+
+}
+
+
+.text-field:focused{
+    -fx-border-color:#135A83FF ;
+    -fx-border-width:  0 0 3 0;
+}
+
 .button:hover
 {
-    -fx-background-color : #104469ff ;
+
+    -fx-border-width: 0 0 2 0;
+    -fx-border-color: #2083c6ff;
 }
 .button:pressed
 {
-    -fx-background-color : #0b324dff ;
+    -fx-border-width: 0 0 3 0;
+    -fx-border-color: #135a83;
 }
 
 .table-view .column-header,

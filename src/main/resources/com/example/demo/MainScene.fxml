@@ -26,7 +26,7 @@
                   </ImageView>
                </children>
             </Pane>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="60.0" prefWidth="236.0" stylesheets="@../../../CSS/MobileLight.css" text="Make payment" textFill="WHITE">
+            <Button fx:id="sideBarMakePayment" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#makePaymentMenu" prefHeight="60.0" prefWidth="236.0" stylesheets="@../../../CSS/MobileLight.css" text="Make payment" textFill="WHITE">
                <padding>
                   <Insets left="50.0" />
                </padding>
@@ -37,7 +37,7 @@
 
                </graphic>
             </Button>
-            <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="236.0" stylesheets="@../../../CSS/MobileLight.css" text="Request money" textFill="WHITE">
+            <Button fx:id="sideBarRequestMoney" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#requestMoneyMenu" prefHeight="61.0" prefWidth="236.0" stylesheets="@../../../CSS/MobileLight.css" text="Request money" textFill="WHITE">
                <padding>
                   <Insets left="50.0" />
                </padding>
@@ -93,7 +93,7 @@
       </VBox>
       <BorderPane layoutX="236.0" prefHeight="600.0" prefWidth="464.0">
          <top>
-            <AnchorPane prefHeight="52.0" prefWidth="464.0" style="-fx-background-color: #2083c6ff;" stylesheets="@../../../CSS/MobileLight.css" BorderPane.alignment="CENTER">
+            <AnchorPane fx:id="requestMenu" prefHeight="52.0" prefWidth="464.0" style="-fx-background-color: #2083c6ff;" stylesheets="@../../../CSS/MobileLight.css" BorderPane.alignment="CENTER">
                <children>
                   <Text fx:id="userName" fill="WHITE" layoutX="36.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User: Name" wrappingWidth="132.13671875">
                      <font>
@@ -111,7 +111,7 @@
          <center>
             <AnchorPane fx:id="makePayment" prefHeight="539.0" prefWidth="459.0" BorderPane.alignment="CENTER">
                <children>
-                  <AnchorPane layoutY="-3.0" prefHeight="546.0" prefWidth="464.0">
+                  <AnchorPane fx:id="SendMenu" layoutY="-3.0" prefHeight="546.0" prefWidth="464.0">
                      <children>
                         <TextField fx:id="sendNumber" layoutX="124.0" layoutY="154.0" prefHeight="34.0" prefWidth="220.0" promptText="Tel. number">
                            <font>
@@ -143,6 +143,11 @@
                         <Text fx:id="numberName" layoutX="121.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Marc" textAlignment="CENTER" visible="false" wrappingWidth="226.13671875">
                            <font>
                               <Font name="Cooper Black" size="20.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="successSendMessage" fill="#21c442" layoutX="70.0" layoutY="491.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="328.13671875">
+                           <font>
+                              <Font name="Cooper Black" size="15.0" />
                            </font>
                         </Text>
                      </children>

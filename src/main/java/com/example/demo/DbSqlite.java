@@ -1,7 +1,12 @@
 package com.example.demo;
 
 import java.sql.* ;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Objects;
+import java.time.format.DateTimeFormatter;
 
 
 public class DbSqlite {
@@ -213,6 +218,69 @@ public class DbSqlite {
 
     }
 
+
+
+    public void createRequest(int senderOfRequests, int receiverOfRequests, int amount) {
+
+        LocalDateTime myDateObj = LocalDateTime.now();
+        DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        String formattedDate = myDateObj.format(myFormatObj);
+
+
+
+        String sql = "INSERT INTO requests  (senderOfRequests ,receiverOfRequests ,amount , date ) " +
+                "VALUES (" + senderOfRequests + ", " + receiverOfRequests + ", " + amount +  ",' " + formattedDate + "' );";
+
+        try {
+            Statement statement = connection.createStatement();
+            statement.execute(sql);
+
+            System.out.println("A request have been committed.");
+
+            statement.close();
+            connection.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+    public ArrayList<Request> returnYourRequest (int receiverOfRequests) {
+
+        String sql = "SELECT * FROM requests WHERE receiverOfRequests = " + receiverOfRequests;
+
+        try {
+            Statement statement = connection.createStatement();
+
+            ResultSet resultSet = statement.executeQuery(sql);
+
+            ArrayList<Request> requests = new ArrayList<>();
+
+            while (resultSet.next()) {
+
+                Request r = new Request(
+                        resultSet.getInt(1),
+                        resultSet.getInt(2),
+                        resultSet.getInt(3),
+                        resultSet.getInt(4),
+                        resultSet.getString(5));
+
+                requests.add(r);
+            }
+
+            statement.close();
+            connection.close();
+
+            return requests;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    return null;
+    }
 
 
 

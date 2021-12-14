@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -55,6 +56,9 @@ public class HelloController {
         }
     }
 
+
+
+
     @FXML private void RegisterPressed() {
 
         try {
@@ -71,9 +75,9 @@ public class HelloController {
 
             if (sql.checkUser(user.getPhoneNumber())) {
 
-                DbSqlite dbSqlite = new DbSqlite();
+                 sql = new DbSqlite();
 
-                dbSqlite.addUser(user);
+                sql.addUser(user);
                 } else {
                 errText.setText("A user with this phone number already exists.");
             }
@@ -113,15 +117,12 @@ public class HelloController {
     public void loginSwitchScene() {
 
         try {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("MainScene.fxml")));
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("MainMabye.fxml")));
             Stage window = (Stage) LoginButton.getScene().getWindow();
 
             window.setScene(new Scene(root , 700, 600));
 
-
-
-
-
+            window.setResizable(false);
 
         } catch (IOException e) {
             e.printStackTrace();
