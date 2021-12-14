@@ -209,12 +209,8 @@ public class DbSqlite {
 
         } catch (SQLException e) {
             e.printStackTrace();
-
         }
-
         return null;
-
-
 
     }
 
