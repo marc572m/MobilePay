@@ -7,9 +7,6 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -62,7 +59,7 @@
                         </TextFlow>
                      </children>
                   </TextFlow>
-                  <TextFlow layoutX="283.0" layoutY="249.0" prefHeight="49.0" prefWidth="410.0" textAlignment="CENTER">
+                  <TextFlow layoutX="248.0" layoutY="251.0" prefHeight="49.0" prefWidth="410.0" textAlignment="CENTER">
                      <children>
                         <TextFlow fx:id="successTextBox" maxHeight="576.0" maxWidth="1.7976931348623157E308" prefHeight="27.0" style="-fx-border-color: #00ff2c;" styleClass="track" stylesheets="@../../../CSS/MobileLight.css" textAlignment="CENTER" visible="false">
                            <children>
@@ -126,59 +123,45 @@
             </AnchorPane>
          </top>
       </BorderPane>
-      <VBox layoutY="55.0" prefHeight="544.0" prefWidth="260.0">
+      <VBox layoutY="55.0" prefHeight="545.0" prefWidth="260.0">
          <children>
-            <ScrollPane hbarPolicy="NEVER" pannable="true" prefHeight="546.0" vbarPolicy="NEVER">
+            <ScrollPane hbarPolicy="NEVER" prefHeight="546.0" stylesheets="@../../../CSS/Regular.css" vbarPolicy="NEVER">
                <content>
                   <VBox fx:id="vbox" depthTest="ENABLE" prefHeight="6496.0" prefWidth="255.0" spacing="20.0">
                      <cursor>
-                        <Cursor fx:constant="OPEN_HAND" />
+                        <Cursor fx:constant="DEFAULT" />
                      </cursor>
                      <padding>
                         <Insets left="20.0" right="20.0" top="20.0" />
                      </padding>
                      <children>
-                        <GridPane alignment="TOP_CENTER" prefHeight="119.0" prefWidth="215.0" styleClass="chart" stylesheets="@../../../CSS/Regular.css">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.0" minWidth="10.0" prefWidth="118.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="99.0" minWidth="10.0" prefWidth="91.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints maxHeight="78.0" minHeight="10.0" prefHeight="72.0" vgrow="SOMETIMES" />
-                            <RowConstraints maxHeight="48.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
+                        <Text fill="#2083c6" strokeType="OUTSIDE" strokeWidth="0.0" text="Requests" textAlignment="CENTER" wrappingWidth="210.13671875">
+                           <font>
+                              <Font name="Cooper Black" size="32.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Text>
+                        <TextFlow prefHeight="46.0" prefWidth="394.0" textAlignment="CENTER">
                            <children>
-                              <Button id="Reject" mnemonicParsing="false" prefHeight="72.0" prefWidth="118.0" stylesheets="@../../../CSS/MobileLight.css" text="Decline" textFill="RED" GridPane.rowIndex="1">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Button>
-                              <Button id="send" mnemonicParsing="false" prefHeight="71.0" prefWidth="91.0" stylesheets="@../../../CSS/MobileLight.css" text="Send" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Button>
-                              <AnchorPane prefHeight="40.0" prefWidth="206.0">
+                              <TextFlow fx:id="errTextBorder1" maxHeight="576.0" maxWidth="1.7976931348623157E308" prefHeight="27.0" style="-fx-border-color: #ff0000;" styleClass="track" stylesheets="@../../../CSS/MobileLight.css" textAlignment="CENTER" visible="false">
                                  <children>
-                                    <Text fx:id="requestText" layoutX="5.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name send you a request for" wrappingWidth="200.13671875" />
-                                    <Text layoutX="4.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$ 00.00 " textAlignment="CENTER" wrappingWidth="200.13671875">
+                                    <Text fx:id="errText1" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="218.0">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
                                        </font>
                                     </Text>
-                                    <Text layoutX="5.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date Here" textAlignment="CENTER" wrappingWidth="200.13671875">
-                                       <font>
-                                          <Font size="15.0" />
-                                       </font>
-                                    </Text>
-                                    <Text fill="#00000098" layoutX="4.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The number here" wrappingWidth="100.13671875" />
                                  </children>
-                              </AnchorPane>
+                              </TextFlow>
                            </children>
-                        </GridPane>
+                        </TextFlow>
                      </children>
                   </VBox>
                </content>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
             </ScrollPane>
          </children></VBox>
    </children>

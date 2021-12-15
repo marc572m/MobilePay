@@ -242,6 +242,32 @@ public class DbSqlite {
 
     }
 
+    public Request getRequest(int transactionId) {
+
+        String sql = "SELECT * FROM requests WHERE transactionId = " + transactionId;
+
+        try {
+            Statement statement = connection.createStatement();
+
+            ResultSet resultSet = statement.executeQuery(sql);
+
+            Request r = new Request(
+                    resultSet.getInt(1),
+                    resultSet.getInt(2),
+                    resultSet.getInt(3),
+                    resultSet.getInt(4),
+                    resultSet.getString(5));
+            connection.close();
+            statement.close();
+
+            return r;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
     public ArrayList<Request> returnYourRequest (int receiverOfRequests) {
 

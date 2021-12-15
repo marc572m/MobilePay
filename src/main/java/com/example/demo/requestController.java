@@ -6,6 +6,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 import java.util.List;
@@ -15,22 +16,42 @@ public class requestController {
 
     @FXML
     public void acceptRequest(ActionEvent event) {
-        String requestId = getRequestId(event);
+        DbSqlite dbSqlite = new DbSqlite();
+        Request request = dbSqlite.getRequest(Integer.parseInt(getRequestId(event)));
+        int amount = request.getAmount();
+        int receiverNumber = request.getSenderOfRequests();
+        dbSqlite = new DbSqlite();
+        User user = dbSqlite.getUser(HelloApplication.ActiveUserNumber);
+
+        Button button = (Button) event.getSource();
+        AnchorPane anchorPane = (AnchorPane) button.getParent().getParent().getParent().getParent().getParent().getParent().getParent();
+
+        if (user.getBalance() < amount) {
 
 
-        // we now the id of the request and can use it to get the date we need to make the transaction
 
-        System.out.println(requestId);
+        } else {
 
+
+            Text text = (Text) anchorPane.lookup("theBalance");
+
+            dbSqlite = new DbSqlite();
+            dbSqlite.sendMoney(HelloApplication.ActiveUserNumber, receiverNumber, amount);
+
+            dbSqlite = new DbSqlite();
+            user = dbSqlite.getUser(HelloApplication.ActiveUserNumber);
+            text.setText("$ " + user.getBalance());
+
+            processRequest(event);
+        }
     }
 
     @FXML private void declineRequest (ActionEvent event) {
-        String requestId = getRequestId(event);
-
-        // we now the id of the request and can use it to get the date we need to delete the request and move it to another databse
 
 
-        System.out.println(requestId);
+        processRequest(event);
+
+
     }
 
 
@@ -49,6 +70,25 @@ public class requestController {
         return requestIdText.getText();
 
     }
+
+    public GridPane getGridPane(ActionEvent event) {
+        Button button = (Button) event.getSource();
+        return (GridPane) button.getParent();
+    }
+
+    public void processRequest(ActionEvent event) {
+        String requestId = getRequestId(event);
+        int reqId = Integer.parseInt(requestId.substring(1));
+
+        DbSqlite sqlite = new DbSqlite();
+        sqlite.deleteTransaction(reqId);
+
+        Button button = (Button) event.getSource();
+        VBox vBox = (VBox) button.getParent().getParent();
+        vBox.getChildren().remove( getGridPane(event) );
+    }
+
+
 
 
 }

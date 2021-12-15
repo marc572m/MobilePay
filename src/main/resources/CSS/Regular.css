@@ -17,10 +17,33 @@
     -fx-padding: 0 0 0 0 ;
     -fx-start-margin: 0 0 0 0;
     -fx-end-margin: 0 0 0 0;
-
-
-
 }
+
+.scroll-pane {
+    -fx-border-width: 0 5 0 0 ;
+    -fx-background-color: transparent;
+    -fx-border-color: #10163fff ;
+}
+
+.scroll-pane:focused {
+    -fx-border-width: 0 0 0 0 ;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

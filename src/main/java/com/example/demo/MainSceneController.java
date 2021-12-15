@@ -153,6 +153,7 @@ public class MainSceneController {
 
             } catch (NumberFormatException e) {
                 // make the text say its not a valid number
+                errText.setText("Not a valid number");
             }
 
         }
@@ -178,18 +179,21 @@ public class MainSceneController {
             DbSqlite sql = new DbSqlite();
             sql.createRequest(senderOfRequests, receiverOfRequests, paymentAmount);
 
-            successTextBox.setVisible(true);
+                successTextBox.setVisible(true);
 
-            sql = new DbSqlite();
+                sql = new DbSqlite();
 
-            User user = sql.getUser( receiverOfRequests );
+                User user = sql.getUser(receiverOfRequests);
 
-            successSendMessage.setText("A request of $" + sendAmount.getText() + " has been send to " + user.getUsername() );
+                successSendMessage.setText("A request of $" + sendAmount.getText() + " has been send to " + user.getUsername());
 
-        } catch (NumberFormatException e ) {
+            }
+            } catch(NumberFormatException e ){
 
-            // print error
-        }
+                errText.setText("This number is invalid.");
+                errTextBorder.setVisible(true);
+                successSendMessage.setText("");
+            }
 
     }
 
@@ -203,18 +207,27 @@ public class MainSceneController {
 
         try {
 
-            GridPane gridPane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Requests.fxml")));
-        vbox.getChildren().add(gridPane);
+            for (int i = 0; i < yourRequests.size(); i++) {
 
-        Text requestText = (Text) gridPane.lookup("#requestText");
-        Text requestMoneyAmount = (Text) gridPane.lookup("#requestMoneyAmount");
-        Text requestDate = (Text) gridPane.lookup("#requestDate");
-        Text requestId = (Text) gridPane.lookup("#requestId");
+                GridPane gridPane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Requests.fxml")));
+                vbox.getChildren().add(gridPane);
 
-        requestText.setText("12345 this is a test");
+                Text requestText = (Text) gridPane.lookup("#requestText");
+                Text requestMoneyAmount = (Text) gridPane.lookup("#requestMoneyAmount");
+                Text requestDate = (Text) gridPane.lookup("#requestDate");
+                Text requestId = (Text) gridPane.lookup("#requestId");
+
+                sql = new DbSqlite();
+
+                User user =  sql.getUser(yourRequests.get(i).getSenderOfRequests() );
+
+                requestText.setText(  user.getUsername()  +   " send you a request for");
+                requestMoneyAmount.setText("$ " + yourRequests.get(i).getAmount());
+                requestDate.setText( yourRequests.get(i).getDateTime() );
+                requestId.setText("#" + yourRequests.get(i).getTransactionId());
 
 
-
+            }
 
         }   catch (IOException e) {
             e.printStackTrace();
