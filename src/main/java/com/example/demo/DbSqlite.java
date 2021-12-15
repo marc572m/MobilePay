@@ -304,6 +304,22 @@ public class DbSqlite {
     return null;
     }
 
+    public void deleteTransaction(int transactionID) {
 
+        String sql = "DELETE FROM requests WHERE transactionId = " + transactionID ;
+
+        try {
+            Statement statement = connection.createStatement();
+            statement.execute(sql);
+
+            System.out.println("A request have been deleted.");
+
+            statement.close();
+            connection.close();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
 
 }

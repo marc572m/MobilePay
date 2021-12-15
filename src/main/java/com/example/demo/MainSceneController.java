@@ -170,14 +170,16 @@ public class MainSceneController {
             // Test if the input amount is a read money number
 
             // check if the phone number is real and registered in the database
-
-
-
-
-
-
             DbSqlite sql = new DbSqlite();
-            sql.createRequest(senderOfRequests, receiverOfRequests, paymentAmount);
+
+            if (sql.checkUser(receiverOfRequests)) {
+                errText.setText("This number is invalid.");
+                errTextBorder.setVisible(true);
+                successSendMessage.setText("");
+                sendNumber.requestFocus();
+            } else {
+
+                sql.createRequest(senderOfRequests, receiverOfRequests, paymentAmount);
 
                 successTextBox.setVisible(true);
 
@@ -202,8 +204,6 @@ public class MainSceneController {
         DbSqlite  sql = new DbSqlite();
 
         ArrayList<Request> yourRequests = sql.returnYourRequest(HelloApplication.ActiveUserNumber);
-
-        System.out.println(yourRequests.size());
 
         try {
 
@@ -234,13 +234,5 @@ public class MainSceneController {
         }
 
     }
-
-
-
-
-
-
-
-
 
 }

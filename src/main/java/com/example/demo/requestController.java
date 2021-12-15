@@ -55,10 +55,7 @@ public class requestController {
     }
 
 
-
-
     public String getRequestId(ActionEvent event) {
-
         Button button = (Button) event.getSource();
         GridPane gridPane = (GridPane) button.getParent();
 
