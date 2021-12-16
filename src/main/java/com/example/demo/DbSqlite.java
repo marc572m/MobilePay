@@ -60,9 +60,6 @@ public class DbSqlite {
         return true;
     }
 
-
-
-
     public void addUser(User user) {
 
         String sql = "INSERT INTO Users (phoneNumber , username ,password , balance) VALUES " +
@@ -90,21 +87,15 @@ public class DbSqlite {
 
         if (dbSqlite.checkUser(phoneNumber)) {
             //phone number does not exist
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
 
             return "ErrPhoneNum";
         }
 
        String sql = "SELECT * FROM Users WHERE phoneNumber = " + phoneNumber;
         try {
+
             Statement statement = connection.createStatement();
-
-
-        ResultSet resultSet = statement.executeQuery(sql);
+            ResultSet resultSet = statement.executeQuery(sql);
 
         if (resultSet.next()) {
            if (Objects.equals(resultSet.getString(3), password)){
@@ -172,8 +163,6 @@ public class DbSqlite {
             statement.execute(sqlSender);
             statement.execute(sqlReceiver);
 
-            System.out.println("balances have been updated");
-
             statement.close();
             connection.close();
 
@@ -212,8 +201,6 @@ public class DbSqlite {
 
     }
 
-
-
     public void createRequest(int senderOfRequests, int receiverOfRequests, int amount) {
 
         LocalDateTime myDateObj = LocalDateTime.now();
@@ -228,8 +215,6 @@ public class DbSqlite {
         try {
             Statement statement = connection.createStatement();
             statement.execute(sql);
-
-            System.out.println("A request have been committed.");
 
             statement.close();
             connection.close();
@@ -266,8 +251,7 @@ public class DbSqlite {
         return null;
     }
 
-
-    public ArrayList<Request> returnYourRequest (int receiverOfRequests) {
+    public ArrayList<Request> returnYourRequest () {
 
         String sql = "SELECT * FROM requests WHERE receiverOfRequests = " + HelloApplication.ActiveUserNumber;
 
@@ -309,8 +293,6 @@ public class DbSqlite {
         try {
             Statement statement = connection.createStatement();
             statement.execute(sql);
-
-            System.out.println("A request have been deleted.");
 
             statement.close();
             connection.close();
