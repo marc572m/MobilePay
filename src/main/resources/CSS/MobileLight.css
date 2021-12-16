@@ -4,6 +4,54 @@
 .filler {
     -fx-background-color: #4b70d1ff;
 }
+.button#exit{
+
+    -fx-border-radius: 5 5 5 5;
+    -fx-background-radius: 5 5 5 5;
+    -fx-background-color: transparent;
+    -fx-border-color:  #10163fff ;
+    -fx-border-width: 2;
+    -fx-start-margin: 1 1 1 1;
+}
+.button#exit:hover{
+
+    -fx-border-radius: 5 5 5 5;
+    -fx-background-radius: 5 5 5 5;
+    -fx-background-color: rgba(245, 37, 37, 0.84);
+    -fx-background-size: 0 0 0 0;
+    -fx-border-color:  #10163fff ;
+    -fx-border-width: 2 2 2 2 ;
+    -fx-font-weight: bold;
+    -fx-text-fill: #10163fff ;
+    -fx-start-margin: 1 1 1 1;
+}
+
+.button#exit:pressed {
+    -fx-border-radius: 5 5 5 5;
+    -fx-background-radius: 5 5 5 5;
+    -fx-background-color: rgba(245, 37, 37, 0.84);
+    -fx-background-size: 0 0 0 0;
+    -fx-border-color:  #10163fff ;
+    -fx-border-width: 2 2 2 2 ;
+    -fx-font-weight: bold;
+    -fx-text-fill: #10163fff ;
+    -fx-start-margin: 1 1 1 1;
+}
+
+.button#exit:focused {
+    -fx-border-radius: 5 5 5 5;
+    -fx-background-radius: 5 5 5 5;
+    -fx-background-color: rgba(245, 37, 37, 0.84);
+    -fx-background-size: 0 0 0 0;
+    -fx-border-color:  #10163fff ;
+    -fx-border-width: 2 2 2 2 ;
+    -fx-font-weight: bold;
+    -fx-text-fill: #10163fff ;
+    -fx-start-margin: 1 1 1 1;
+    -fx-font-size: 20 px;
+
+}
+
 
 
 .button#Reject {
@@ -45,6 +93,7 @@
     -fx-end-margin: 0 0 0 0 ;
     -fx-start-margin: 0 0 0 0 ;
     -fx-text-fill: #27d027;
+
 }
 .button#send:hover {
     -fx-background-color: rgba(217, 217, 217, 0.85);
@@ -68,8 +117,8 @@
 
 .button
 {
-
-
+    -fx-border-color: transparent;
+    -fx-border-width: 0 0 3 0;
     -fx-text-fill: #2083c6ff;
     -fx-background-radius: 20 20 20 20;
     -fx-background-color: transparent;
@@ -132,9 +181,11 @@
 
     -fx-border-width: 0 0 2 0;
     -fx-border-color: #2083c6ff;
+    -fx-background-color: transparent;
+
 }
 .button:pressed
-{
+{   -fx-background-color: transparent;
     -fx-border-width: 0 0 3 0;
     -fx-border-color: #135a83;
 }

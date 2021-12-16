@@ -1,30 +1,32 @@
 package com.example.demo;
-
-import javafx.animation.TranslateTransition;
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
-import javafx.util.Duration;
-
+import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
-
+import java.util.Collections;
 import java.util.Objects;
 
 
 public class MainSceneController {
 
+
     // SideBarButtons
     @FXML private Button sideBarMakePayment;
     @FXML private Button sideBarRequestMoney;
+
+    @FXML private Button transactionsMenuButton;
+    @FXML private Button requestMenuButton;
 
     // Application showing
     @FXML private AnchorPane SendMenu;
@@ -32,6 +34,7 @@ public class MainSceneController {
 
     // The blackBlue Bar tingy
     @FXML private VBox vbox;
+    @FXML private VBox transactionsVBox;
 
     // Send Money Controllers
     @FXML private Text userName;
@@ -41,16 +44,9 @@ public class MainSceneController {
     @FXML private Text errText;
     @FXML private TextFlow errTextBorder;
     @FXML private TextFlow  successTextBox;
-    @FXML private Text numberName;
     @FXML private Text successSendMessage;
 
     //Request Money Controllers
-
-
-
-
-
-
 
     public void initialize() {
             DbSqlite  sql = new DbSqlite();
@@ -61,10 +57,34 @@ public class MainSceneController {
 
         makePaymentMenu();
 
-        TranslateTransition t = new TranslateTransition(Duration.seconds(1)  , vbox );
+        transactionsMenu();
+
+      //  TranslateTransition t = new TranslateTransition(Duration.seconds(1)  , vbox );
 
         handleRequest();
 
+        handleTransactions();
+    }
+
+    public void transactionsMenu() {
+        transactionsVBox.setVisible(true);
+        vbox.setVisible(false);
+        vbox.managedProperty().bind(vbox.visibleProperty());
+        transactionsVBox.managedProperty().bind(transactionsVBox.visibleProperty());
+
+        transactionsMenuButton.setStyle("-fx-border-width: 0 0 3 0; -fx-border-color: #135a83; -fx-text-fill: #135a83 ");
+        requestMenuButton.setStyle("");
+
+    }
+
+    public void requestMenu() {
+        vbox.setVisible(true);
+        transactionsVBox.setVisible(false);
+        vbox.managedProperty().bind(vbox.visibleProperty());
+        transactionsVBox.managedProperty().bind(transactionsVBox.visibleProperty());
+
+        requestMenuButton.setStyle("-fx-border-width: 0 0 3 0; -fx-border-color: #135a83; -fx-text-fill: #135a83 ");
+        transactionsMenuButton.setStyle("");
 
     }
 
@@ -78,6 +98,7 @@ public class MainSceneController {
         requestMenu.setVisible(false);
 
     }
+
     public void requestMoneyMenu() {
         sideBarRequestMoney.setStyle("-fx-border-width: 0 0 3 0; -fx-border-color: #135a83; -fx-text-fill: #135a83 ");
         sideBarMakePayment.setStyle("");
@@ -144,6 +165,11 @@ public class MainSceneController {
                     successSendMessage.setText("Successfully send $" + paymentAmount + " to " + user.getUsername());
                     successTextBox.setVisible(true);
 
+                    sql = new DbSqlite();
+
+                    sql.createTransaction("send" , HelloApplication.ActiveUserNumber , phoneNumberToReceiveMoney , paymentAmount );
+
+
                 } else {
                     errText.setText("Insufficient funds");
                     errTextBorder.setVisible(true);
@@ -152,7 +178,6 @@ public class MainSceneController {
                 }
 
             } catch (NumberFormatException e) {
-                // make the text say its not a valid number
                 errText.setText("Not a valid number");
             }
 
@@ -179,6 +204,9 @@ public class MainSceneController {
                 sendNumber.requestFocus();
             } else {
 
+
+                sql = new DbSqlite();
+
                 sql.createRequest(senderOfRequests, receiverOfRequests, paymentAmount);
 
                 successTextBox.setVisible(true);
@@ -188,6 +216,11 @@ public class MainSceneController {
                 User user = sql.getUser(receiverOfRequests);
 
                 successSendMessage.setText("A request of $" + sendAmount.getText() + " has been send to " + user.getUsername());
+
+                sendAmount.setText("");
+                sendNumber.setText("");
+
+
 
             }
             } catch(NumberFormatException e ){
@@ -203,11 +236,12 @@ public class MainSceneController {
 
         DbSqlite  sql = new DbSqlite();
 
-        ArrayList<Request> yourRequests = sql.returnYourRequest(HelloApplication.ActiveUserNumber);
+        ArrayList<Request> yourRequests = sql.returnYourRequest();
 
         try {
+            System.out.println(yourRequests.size()  );
 
-            for (int i = 0; i < yourRequests.size(); i++) {
+            for (Request yourRequest : yourRequests) {
 
                 GridPane gridPane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Requests.fxml")));
                 vbox.getChildren().add(gridPane);
@@ -219,12 +253,12 @@ public class MainSceneController {
 
                 sql = new DbSqlite();
 
-                User user =  sql.getUser(yourRequests.get(i).getSenderOfRequests() );
+                User user = sql.getUser(yourRequest.getSenderOfRequests());
 
-                requestText.setText(  user.getUsername()  +   " send you a request for");
-                requestMoneyAmount.setText("$ " + yourRequests.get(i).getAmount());
-                requestDate.setText( yourRequests.get(i).getDateTime() );
-                requestId.setText("#" + yourRequests.get(i).getTransactionId());
+                requestText.setText(user.getUsername() + " send you a request for");
+                requestMoneyAmount.setText("$ " + yourRequest.getAmount());
+                requestDate.setText(yourRequest.getDateTime());
+                requestId.setText("#" + yourRequest.getTransactionId());
 
 
             }
@@ -235,4 +269,114 @@ public class MainSceneController {
 
     }
 
+    public void handleTransactions() {
+        DbSqlite sqlite = new DbSqlite();
+
+        ArrayList<Transaction> transactions  =  sqlite.returnYourTransactions();
+
+        transactions.sort(Transaction.transitionid);
+
+
+        try {
+            System.out.println(transactions.size());
+
+        for (Transaction transaction : transactions) {
+
+            AnchorPane anchorPane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("transactions.fxml")));
+            transactionsVBox.getChildren().add(anchorPane);
+
+            Text transactionText = (Text) anchorPane.lookup("#text");
+            Text transactionAmount = (Text) anchorPane.lookup("#amount");
+            Text transactionData = (Text) anchorPane.lookup("#date");
+            Text transactionId = (Text) anchorPane.lookup("#id");
+
+            DbSqlite dbSqlite = new DbSqlite();
+            User user =  dbSqlite.getUser(transaction.getReceiverNumber());
+
+            if (transaction.getSenderNumber() == HelloApplication.ActiveUserNumber ) {
+
+                switch (transaction.getTransactionType()) {
+                    case "send" -> {
+                        transactionText.setText("You send " + user.getUsername());
+                        transactionAmount.setFill(Paint.valueOf("#FF0000FF"));
+                        transactionAmount.setText("$ -" + transaction.getAmount());
+                    }
+                    case "requestAccepted" -> {
+                        transactionText.setText(user.getUsername() + " accepted your request for");
+                        transactionAmount.setFill(Paint.valueOf("#27d027"));
+                        transactionAmount.setText("$ " + transaction.getAmount());
+                    }
+                    case "requestDeclined" -> {
+                        transactionText.setText(user.getUsername() + "s' declined your request for");
+                        transactionAmount.setFill(Paint.valueOf("#5b5b5b"));
+                        transactionAmount.setText("$ " + transaction.getAmount());
+                    }
+                }
+
+
+            } else {
+
+                switch (transaction.getTransactionType()) {
+                    case "send" -> {
+                        transactionText.setText(user.getUsername() + " send you ");
+                        transactionAmount.setFill(Paint.valueOf("#27d027"));
+                        transactionAmount.setText("$ " + transaction.getAmount());
+                    }
+                    case "requestAccepted" -> {
+                        transactionText.setText("You accepted " + user.getUsername() + "'s request for");
+                        transactionAmount.setFill(Paint.valueOf("#FF0000FF"));
+                        transactionAmount.setText("$ -" + transaction.getAmount());
+                    }
+                    case "requestDeclined" -> {
+                        transactionText.setText("You declined " + user.getUsername() + "'s request for");
+                        transactionAmount.setFill(Paint.valueOf("#5b5b5b"));
+                        transactionAmount.setText("$ " + transaction.getAmount());
+                    }
+                }
+
+            }
+
+            transactionData.setText(  transaction.getDate().toString() );
+            transactionId.setText("#" +  transaction.getTransitionId());
+
+        }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+    public void signOut() {
+
+        HelloApplication.ActiveUserNumber = 0;
+
+        try {
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("hello-view.fxml")));
+            Stage window = (Stage) vbox.getScene().getWindow();
+
+            window.setScene(new Scene(root , 700, 600));
+
+            window.setResizable(false);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+
+    }
+    public void exit() {
+
+        System.exit(0);
+
+
+    }
+
+
 }
+
+
+

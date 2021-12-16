@@ -8,6 +8,27 @@
 
 }
 
+.button#exit {
+
+    -fx-border-radius: 0 0 0 0;
+    -fx-border-width: 0 0 0 0;
+    -fx-background-radius: 0 0 0 0 ;
+    -fx-background-color: transparent;
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+
+}
+.button:hover#exit {
+    -fx-border-radius: 0 0 0 0;
+    -fx-border-width: 0 0 0 0;
+    -fx-background-radius: 0 0 0 0 ;
+    -fx-background-color: red;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+
+
 .chart {
 
     -fx-background-color: transparent;
@@ -26,9 +47,9 @@
 }
 
 .scroll-pane:focused {
-    -fx-border-width: 0 0 0 0 ;
+    -fx-border-width: 0 5 0 0 ;
     -fx-background-color: transparent;
-    -fx-border-color: transparent;
+    -fx-border-color: #10163fff ;
 }
 
 

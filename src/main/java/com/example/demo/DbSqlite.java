@@ -1,9 +1,7 @@
 package com.example.demo;
 
 import java.sql.* ;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.time.format.DateTimeFormatter;
@@ -271,7 +269,7 @@ public class DbSqlite {
 
     public ArrayList<Request> returnYourRequest (int receiverOfRequests) {
 
-        String sql = "SELECT * FROM requests WHERE receiverOfRequests = " + receiverOfRequests;
+        String sql = "SELECT * FROM requests WHERE receiverOfRequests = " + HelloApplication.ActiveUserNumber;
 
         try {
             Statement statement = connection.createStatement();
@@ -321,5 +319,102 @@ public class DbSqlite {
             throwables.printStackTrace();
         }
     }
+
+    public void createTransaction(String transactionType, int senderNumber, int receiverNumber , int amount ) {
+        // in the case it is a request the sender number belongs to one who send the request
+        // and the receiver number the one who received the request and gets to process it
+        LocalDateTime myDateObj = LocalDateTime.now();
+        DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        String formattedDate = myDateObj.format(myFormatObj);
+
+        String sql = "INSERT INTO transactions ( transactionType , senderNumber , receiverNumber , amount , date ) " +
+                "VALUES ('" + transactionType + "' , " + senderNumber + ", " + receiverNumber
+                + ", " + amount + ", '" + formattedDate + "');";
+        try {
+            Statement statement = connection.createStatement();
+            statement.execute(sql);
+
+            statement.close();
+            connection.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public ArrayList<Transaction> returnYourTransactions () {
+
+        String sql = "SELECT * FROM transactions WHERE senderNumber = " + HelloApplication.ActiveUserNumber;
+        try {
+
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+
+            ArrayList<Transaction> transaction = new ArrayList<>();
+
+            while (resultSet.next()) {
+
+                Transaction t = new Transaction(
+                        resultSet.getInt(1),
+                        resultSet.getString(2),
+                        resultSet.getInt(3),
+                        resultSet.getInt(4),
+                        resultSet.getInt(5),
+                        resultSet.getString(6));
+
+                transaction.add(t);
+            }
+
+            statement.close();
+
+
+
+
+
+
+            String sql1 = "SELECT * FROM transactions WHERE receiverNumber = " + HelloApplication.ActiveUserNumber;
+
+            Statement statement1 = connection.createStatement();
+
+            ResultSet resultSet1 = statement1.executeQuery(sql1);
+
+            while (resultSet1.next()) {
+                Transaction t = new Transaction(
+                        resultSet1.getInt(1),
+                        resultSet1.getString(2),
+                        resultSet1.getInt(3),
+                        resultSet1.getInt(4),
+                        resultSet1.getInt(5),
+                        resultSet1.getString(6));
+
+                transaction.add(t);
+            }
+
+
+            statement1.close();
+            connection.close();
+
+
+            return  transaction;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+            return  null;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

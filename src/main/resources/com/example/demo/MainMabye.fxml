@@ -7,6 +7,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -18,35 +19,26 @@
          <center>
             <AnchorPane prefHeight="480.0" prefWidth="625.0" styleClass="filler" BorderPane.alignment="CENTER">
                <children>
-                  <AnchorPane fx:id="SendMenu" layoutX="280.0" layoutY="14.0" prefHeight="360.0" prefWidth="300.0">
+                  <AnchorPane fx:id="SendMenu" layoutX="298.0" layoutY="14.0" prefHeight="360.0" prefWidth="300.0">
                      <children>
-                        <Text fill="#2083c6" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Make payment" wrappingWidth="328.13671875">
+                        <Text fill="#2083c6" layoutX="15.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Make payment" wrappingWidth="328.13671875">
                            <font>
                               <Font name="Cooper Black" size="44.0" />
                            </font>
                         </Text>
-                        <Button layoutX="95.0" layoutY="286.0" mnemonicParsing="false" onAction="#makePayment" prefHeight="42.0" prefWidth="139.0" stylesheets="@../../../CSS/Regular.css" text="Send">
+                        <Button layoutX="121.0" layoutY="310.0" mnemonicParsing="false" onAction="#makePayment" prefHeight="42.0" prefWidth="139.0" stylesheets="@../../../CSS/Regular.css" text="Send">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Button>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="requestMenu" layoutX="280.0" layoutY="14.0" prefHeight="360.0" prefWidth="300.0" visible="false">
-                     <children>
-                        <Text fill="#2083c6" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Request money" wrappingWidth="328.13671875">
-                           <font>
-                              <Font name="Cooper Black" size="42.0" />
-                           </font>
-                        </Text>
-                        <Button layoutX="95.0" layoutY="286.0" mnemonicParsing="false" onAction="#makeRequest" prefHeight="42.0" prefWidth="139.0" stylesheets="@../../../CSS/Regular.css" text="Request">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </AnchorPane>
-                  <TextFlow layoutX="248.0" layoutY="251.0" prefHeight="46.0" prefWidth="394.0" textAlignment="CENTER">
+                  <Button id="exit" fx:id="logout" layoutX="276.0" layoutY="484.0" mnemonicParsing="false" onAction="#signOut" prefHeight="47.0" prefWidth="148.0" stylesheets="@../../../CSS/MobileLight.css" text="Sign out">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+                  <TextFlow layoutX="286.0" layoutY="270.0" prefHeight="50.0" prefWidth="400.0" textAlignment="CENTER">
                      <children>
                         <TextFlow fx:id="errTextBorder" maxHeight="576.0" maxWidth="1.7976931348623157E308" prefHeight="27.0" style="-fx-border-color: #ff0000;" styleClass="track" stylesheets="@../../../CSS/MobileLight.css" textAlignment="CENTER" visible="false">
                            <children>
@@ -59,7 +51,7 @@
                         </TextFlow>
                      </children>
                   </TextFlow>
-                  <TextFlow layoutX="248.0" layoutY="251.0" prefHeight="49.0" prefWidth="410.0" textAlignment="CENTER">
+                  <TextFlow layoutX="286.0" layoutY="270.0" prefHeight="50.0" prefWidth="400.0" textAlignment="CENTER">
                      <children>
                         <TextFlow fx:id="successTextBox" maxHeight="576.0" maxWidth="1.7976931348623157E308" prefHeight="27.0" style="-fx-border-color: #00ff2c;" styleClass="track" stylesheets="@../../../CSS/MobileLight.css" textAlignment="CENTER" visible="false">
                            <children>
@@ -72,17 +64,21 @@
                         </TextFlow>
                      </children>
                   </TextFlow>
-                  <TextField fx:id="sendAmount" layoutX="340.0" layoutY="134.0" prefHeight="35.0" prefWidth="209.0" promptText="Amount" stylesheets="@../../../CSS/MobileLight.css">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </TextField>
-                  <TextField fx:id="sendNumber" layoutX="340.0" layoutY="184.0" prefHeight="35.0" prefWidth="209.0" promptText="Tel. number" stylesheets="@../../../CSS/MobileLight.css">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </TextField>
-                  <Button fx:id="sideBarMakePayment" contentDisplay="BOTTOM" layoutX="341.0" layoutY="364.0" mnemonicParsing="false" onAction="#makePaymentMenu" prefHeight="39.0" prefWidth="103.0" stylesheets="@../../../CSS/MobileLight.css" text="Send" textAlignment="CENTER" textFill="WHITE">
+                  <AnchorPane fx:id="requestMenu" layoutX="298.0" layoutY="14.0" prefHeight="360.0" prefWidth="300.0" visible="false">
+                     <children>
+                        <Text fill="#2083c6" layoutX="15.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Request money" wrappingWidth="328.13671875">
+                           <font>
+                              <Font name="Cooper Black" size="42.0" />
+                           </font>
+                        </Text>
+                        <Button layoutX="121.0" layoutY="310.0" mnemonicParsing="false" onAction="#makeRequest" prefHeight="42.0" prefWidth="139.0" stylesheets="@../../../CSS/Regular.css" text="Request">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+                  <Button fx:id="sideBarMakePayment" contentDisplay="BOTTOM" layoutX="375.0" layoutY="380.0" mnemonicParsing="false" onAction="#makePaymentMenu" prefHeight="39.0" prefWidth="103.0" stylesheets="@../../../CSS/MobileLight.css" text="Send" textAlignment="CENTER" textFill="WHITE">
                      <cursor>
                         <Cursor fx:constant="DEFAULT" />
                      </cursor>
@@ -90,12 +86,27 @@
                         <Font name="System Bold" size="17.0" />
                      </font>
                   </Button>
-                  <Button id="seletor" fx:id="sideBarRequestMoney" contentDisplay="BOTTOM" layoutX="466.0" layoutY="364.0" mnemonicParsing="false" onAction="#requestMoneyMenu" prefHeight="39.0" prefWidth="103.0" stylesheets="@../../../CSS/MobileLight.css" text="Request" textAlignment="CENTER" textFill="WHITE">
+                  <Button fx:id="sideBarRequestMoney" contentDisplay="BOTTOM" layoutX="500.0" layoutY="380.0" mnemonicParsing="false" onAction="#requestMoneyMenu" prefHeight="39.0" prefWidth="103.0" stylesheets="@../../../CSS/MobileLight.css" text="Request" textAlignment="CENTER" textFill="WHITE">
                      <cursor>
                         <Cursor fx:constant="DEFAULT" />
                      </cursor>
                      <font>
                         <Font name="System Bold" size="17.0" />
+                     </font>
+                  </Button>
+                  <TextField fx:id="sendAmount" layoutX="384.0" layoutY="122.0" prefHeight="35.0" prefWidth="209.0" promptText="Amount" stylesheets="@../../../CSS/MobileLight.css">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="sendNumber" layoutX="384.0" layoutY="179.0" prefHeight="35.0" prefWidth="209.0" promptText="Tel. number" stylesheets="@../../../CSS/MobileLight.css">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+                  <Button id="exit" fx:id="Exit" layoutX="539.0" layoutY="484.0" mnemonicParsing="false" onAction="#exit" prefHeight="47.0" prefWidth="148.0" stylesheets="@../../../CSS/MobileLight.css" text="Exit">
+                     <font>
+                        <Font size="20.0" />
                      </font>
                   </Button>
                </children>
@@ -127,7 +138,7 @@
          <children>
             <ScrollPane hbarPolicy="NEVER" prefHeight="546.0" stylesheets="@../../../CSS/Regular.css" vbarPolicy="NEVER">
                <content>
-                  <VBox fx:id="vbox" depthTest="ENABLE" prefHeight="6496.0" prefWidth="255.0" spacing="20.0">
+                  <VBox depthTest="ENABLE" nodeOrientation="LEFT_TO_RIGHT" prefWidth="255.0">
                      <cursor>
                         <Cursor fx:constant="DEFAULT" />
                      </cursor>
@@ -135,27 +146,54 @@
                         <Insets left="20.0" right="20.0" top="20.0" />
                      </padding>
                      <children>
-                        <Text fill="#2083c6" strokeType="OUTSIDE" strokeWidth="0.0" text="Requests" textAlignment="CENTER" wrappingWidth="210.13671875">
-                           <font>
-                              <Font name="Cooper Black" size="32.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </Text>
-                        <TextFlow prefHeight="46.0" prefWidth="394.0" textAlignment="CENTER">
+                        <VBox prefWidth="100.0">
                            <children>
-                              <TextFlow fx:id="errTextBorder1" maxHeight="576.0" maxWidth="1.7976931348623157E308" prefHeight="27.0" style="-fx-border-color: #ff0000;" styleClass="track" stylesheets="@../../../CSS/MobileLight.css" textAlignment="CENTER" visible="false">
+                              <HBox alignment="TOP_CENTER" prefHeight="24.0" prefWidth="215.0">
                                  <children>
-                                    <Text fx:id="errText1" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="218.0">
+                                    <Button fx:id="transactionsMenuButton" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#transactionsMenu" prefHeight="38.0" prefWidth="110.0" stylesheets="@../../../CSS/MobileLight.css" text="Transactions" textFill="WHITE">
+                                       <cursor>
+                                          <Cursor fx:constant="DEFAULT" />
+                                       </cursor>
                                        <font>
-                                          <Font name="System Bold" size="15.0" />
+                                          <Font name="System Bold" size="14.0" />
                                        </font>
-                                    </Text>
+                                    </Button>
+                                    <Button fx:id="requestMenuButton" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#requestMenu" prefHeight="39.0" prefWidth="110.0" stylesheets="@../../../CSS/MobileLight.css" text="Requests" textAlignment="CENTER" textFill="WHITE">
+                                       <cursor>
+                                          <Cursor fx:constant="DEFAULT" />
+                                       </cursor>
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Button>
                                  </children>
-                              </TextFlow>
+                              </HBox>
+                              <VBox fx:id="vbox" prefWidth="100.0" spacing="20.0">
+                                 <VBox.margin>
+                                    <Insets bottom="20.0" />
+                                 </VBox.margin>
+                                 <children>
+                                    <TextFlow prefHeight="46.0" prefWidth="394.0" textAlignment="CENTER">
+                                       <children>
+                                          <TextFlow fx:id="requestTextBorder" maxHeight="576.0" maxWidth="1.7976931348623157E308" prefHeight="27.0" style="-fx-border-color: #ff0000; -fx-border-width: 2 2 2 2;" styleClass="track" stylesheets="@../../../CSS/MobileLight.css" textAlignment="CENTER" visible="false">
+                                             <children>
+                                                <Text fx:id="requestText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="218.0">
+                                                   <font>
+                                                      <Font name="System Bold" size="15.0" />
+                                                   </font>
+                                                </Text>
+                                             </children>
+                                          </TextFlow>
+                                       </children>
+                                    </TextFlow>
+                                 </children></VBox>
+                              <VBox fx:id="transactionsVBox" prefWidth="100.0" spacing="5.0">
+                                 <VBox.margin>
+                                    <Insets bottom="20.0" top="20.0" />
+                                 </VBox.margin>
+                              </VBox>
                            </children>
-                        </TextFlow>
+                        </VBox>
                      </children>
                   </VBox>
                </content>
