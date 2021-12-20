@@ -5,7 +5,21 @@
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:C:\Users\david\OneDrive\Dokumenter\GitHub\MobilePay\src\main\resources\Sqlite\MarcPay.db</jdbc-url>
+      <jdbc-url>jdbc:sqlite:C:\Users\marc2\Documents\GitHub\MobilePay\src\main\resources\Sqlite\MarcPay.db</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="MarcPay" uuid="e52d9154-2f57-4e77-a408-7081f84b3d88">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\marc2\Documents\GitHub\MobilePay\src\main\resources\Sqlite\MarcPay.db</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="MarcPay.db" uuid="b29ebee7-f80e-4311-8a6a-6e1c0155c673">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\marc2\Documents\GitHub\MobilePay\src\main\resources\Sqlite\MarcPay.db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

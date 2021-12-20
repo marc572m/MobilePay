@@ -16,8 +16,7 @@ public class DbSqlite {
 
 
         try {
-            String url =
- "jdbc:sqlite:src/main/resources/Sqlite/MarcPay.db";
+            String url = "jdbc:sqlite:C:\\Users\\marc2\\Documents\\GitHub\\MobilePay\\src\\main\\resources\\Sqlite\\MarcPay.db";
             connection = DriverManager.getConnection(url);
         } catch (SQLException throwable) {
             throwable.printStackTrace();
